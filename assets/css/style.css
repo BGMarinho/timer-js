@@ -27,48 +27,6 @@ body {
   border-radius: 10px;
 }
 
-/* .flex-container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
-} */
-
-/* form input,
-form label,
-form button {
-  display: block;
-  width: 100%;
-  margin-bottom: 10px;
-} */
-
-/* form input {
-  font-size: 24px;
-  height: 50px;
-  padding: 0 20px;
-} */
-
-/* form input:focus {
-  outline: 1px solid var(--primary-color);
-} */
-
-/* form button {
-  border: none;
-  background: var(--primary-color);
-  color: #fff;
-  font-size: 18px;
-  font-weight: 700;
-  height: 50px;
-  cursor: pointer;
-  margin-top: 30px;
-} */
-
-/* form button:hover {
-  background: var(--primary-color-darker);
-} */
-
-/* .imc-final-result {
-  display: none;
-  padding-left: 10px;
-  border:2px solid black
-} */
+.clock {
+  font-size: 3em;
+}
