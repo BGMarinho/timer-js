@@ -2,28 +2,48 @@ function scope() {
   const bodyClass = document.body.classList.contains("my-timer");
   if (bodyClass === true) {
     const relogio = document.querySelector(".clock"); //é pra usar só quando for printar na tela o cronômetro rodando
-    const iniciar = document.querySelector(".start");
-    const pausar = document.querySelector(".stop");
-    const zerar = document.querySelector(".start-over");
 
-    iniciar.addEventListener("click", function (event) {
-      console.log(" ----- Cliquei no iniciar -----");
-      let data;
-      // console.log("Valor de data -->", data);
-      // console.log("Tipo de data -->", typeof data);
-      // console.log(data instanceof Date ? "é instância" : "não é instância");
-      setInterval(function () {
-        data = new Date();
-        console.log(data);
+    function getTimeFromSeconds(segundos) {
+      const data = new Date(segundos * 1000);
+      return data.toLocaleTimeString("pt-BR", {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: false,
+        timeZone: "GMT", //UTC pode ser também
+      });
+    }
+
+    let seconds = 0;
+    let timer;
+
+    function startTimer() {
+      timer = setInterval(function () {
+        seconds++;
+        relogio.innerHTML = getTimeFromSeconds(seconds);
       }, 1000);
-    });
+      return timer;
+    }
 
-    pausar.addEventListener("click", function (event) {
-      console.log("Cliquei no pausar");
-    });
+    document.addEventListener("click", function (event) {
+      const element = event.target;
 
-    zerar.addEventListener("click", function (event) {
-      console.log("Cliquei no zerar");
+      if (element.classList.contains("start")) {
+        clearInterval(timer);
+        startTimer();
+        relogio.style.color = "black";
+      }
+
+      if (element.classList.contains("stop")) {
+        clearInterval(timer);
+        relogio.style.color = "red";
+      }
+
+      if (element.classList.contains("start-over")) {
+        clearInterval(timer);
+        relogio.innerHTML = getTimeFromSeconds(0);
+        relogio.style.color = "black";
+      }
     });
   }
 }
